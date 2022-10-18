@@ -1,0 +1,3 @@
+[2022-10-18 12:26:05] ::ffff:127.0.0.1  GET /
+[2022-10-18 12:27:16] ::ffff:127.0.0.1  GET /events/president/news
+[2022-10-18 12:27:16] ::ffff:127.0.0.1  GET /events/president/news/calendar/2022

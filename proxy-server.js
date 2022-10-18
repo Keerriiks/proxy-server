@@ -2,7 +2,6 @@ var http = require('http');
 const cluster = require('cluster');
 const fs = require('fs');
 var os = require("os");
-var url = require("url");
 
 const numCPU = os.cpus().length; 
 
@@ -15,10 +14,10 @@ if (cluster.isMaster) {
   http.createServer(onRequest).listen(3000);
   
   function onRequest(client_req, client_res) {
+    
     console.log('serve: ' + client_req.url);
-
-    var ip = client_req.connection.remoteAddress;
-    var url_info  = url.parse(client_req.url);
+    const ip = client_req.headers['x-real-ip'] || client_req.connection.remoteAddress;
+    
 
     var options = {
       hostname: 'www.kremlin.ru',
@@ -54,7 +53,7 @@ if (cluster.isMaster) {
       if (err) {
         return console.log(err);
       } else {
-        console.log(`${inf} saved!`);
+        console.log(`${inf} saved in log.txt`);
       }
     });
   }
